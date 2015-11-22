@@ -28,7 +28,7 @@ g <- g + geom_smooth(method = "lm", level = 0.8)
 g <- g + facet_grid(.~type)
 g <- g + geom_point()
 g <- g + theme_bw()
-g <- g + xlab("Year") + ylab("PM2.5 Emissions (Tons)")
+g <- g + xlab("Year") + ylab("PM2.5 Emissions (Tons)") + theme(axis.text.x = element_text(angle=45))
 g <- g + ggtitle("Baltimore PM2.5 Emissions 1999-2008 By Type")
 plot(g)
       
