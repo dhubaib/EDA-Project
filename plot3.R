@@ -4,6 +4,7 @@
 ## Script to load NEI data from EPA for processing
 library(data.table)
 library(dplyr)
+library(ggplot2)
 
 # Don't re-load data if already in memory...
 if(!exists("NEI") || (exists("NEI")&nrow(NEI) != 6497651))
@@ -21,19 +22,21 @@ year_sum <- by_year %>% summarize(total = sum(Emissions))
 # Create point-plot using base system
 year_sum$total <-round(year_sum$total,2)
 
-plot(year_sum,
-     pch = 15,
-     xlab = "Year",
-     ylab = "Total Emissions (Thousand Tons)")
 
-lines(year_sum, # Include line to emphasize trend..
-      lty = 2,
-      lwd = 2,
-      col = "Blue")
-title("Baltimore PM2.5 Emissions 1999-2008")
+g <- ggplot(data = year_sum, aes(year, total))
+g <- g + geom_smooth(method = "lm", level = 0.8)
+g <- g + facet_grid(.~type)
+g <- g + geom_point()
+g <- g + theme_bw()
+g <- g + xlab("Year") + ylab("PM2.5 Emissions (Tons)")
+g <- g + ggtitle("Baltimore PM2.5 Emissions 1999-2008 By Type")
+plot(g)
+      
+
+#title("Baltimore PM2.5 Emissions 1999-2008 By Type")
 
 # Prepare plot for copy to png
-dev.copy(png, "plot2.png")
+dev.copy(png, "plot3.png")
 
 # Inspect plot & confirm save to png
 cat ("Press [enter] to save plot")
