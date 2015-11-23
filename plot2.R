@@ -22,14 +22,15 @@ year_sum$total <-round(year_sum$total/1000,2) # Scale by thousands
 
 plot(year_sum,
      pch = 15,
+     col = "Blue",
      xlab = "Year",
-     ylab = "Total Emissions (Thousand Tons)")
+     ylab = "Total Emissions (Thousand Tons)",
+     cex = 1.25)
 
 lines(year_sum, # Include line to emphasize trend..
-      lty = 2,
       lwd = 2,
-      col = "Blue")
-title("Baltimore PM2.5 Emissions 1999-2008")
+      col = "Black")
+title("Baltimore PM2.5 Emissions 1999-2008", cex = 2)
 
 # Prepare plot for copy to png
 dev.copy(png, "plot2.png")

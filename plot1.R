@@ -21,13 +21,14 @@ year_sum$total <-round(year_sum$total/1000000,2) # Scale by millions
 
 plot(year_sum,
      pch = 15,
+     col = "Blue",
      xlab = "Year",
-     ylab = "Total Emissions (Million Tons)")
+     ylab = "Total Emissions (Million Tons)",
+     cex = 1.25)
 
 lines(year_sum, # Include line to emphasize trend..
-      lty = 2,
       lwd = 2,
-      col = "Blue")
+      col = "Black")
 title("US PM2.5 Emissions Decreasing 1999-2008")
 
 # Prepare plot for copy to png
